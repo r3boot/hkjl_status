@@ -35,6 +35,7 @@ type Response struct {
 
 type TemplateData struct {
 	Status    int
+	Timestamp string
 	Mainsite  Response
 	Community Response
 }
@@ -154,6 +155,7 @@ func WriteStatusPage(templates string, output_dir string) (err error) {
 	} else if data.Community.Code != 200 {
 		data.Status = D_ORANGE
 	}
+	data.Timestamp = time.Now().Format(time.RFC850)
 
 	Log.Debug("Loading template file data")
 	fname = templates + "/index.html"
