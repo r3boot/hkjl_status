@@ -9,20 +9,21 @@ OUTPUT_DIR='/srv/www/hkjl_status/htdocs'
 # Path to template directory
 TEMPLATE_DIR='/usr/share/hkjl_status/templates'
 
+# File containing cronjob
+CRONJOB='/etc/cron.d/update_hkjl_status'
+
 # Path to build directory
 BUILD_DIR='./build'
 
 # User/group under which the binary should run
 USER='_hkjl'
-GROUP='_hklj'
+GROUP='_hkjl'
+WWW_GROUP='www-data'
 
 # Binaries used in these scripts
 GIT="$(which git)"
 GO="$(which go)"
 STRIP="$(which strip)"
-
-# Branch under which the software is built
-BRANCH="build-$(date +%d%m%Y)"
 
 # Can only run these scripts as root
 if [[ $(whoami) != "root" ]]; then
