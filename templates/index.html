@@ -1,0 +1,25 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>HKJL: {{ if eq .Status 0 }}Ok{{ else if eq .Status 1 }}Warning{{ else if eq .Status 2 }}CRITICAL{{ else }}Unknown{{ end }}</title>
+    </head>
+    <body>
+        <p>Overall status: {{ if eq .Status 0 }}Ok{{ else if eq .Status 1 }}Warning{{ else if eq .Status 2 }}CRITICAL{{ end }}
+        <p/><a href="{{ .Mainsite.Url }}">{{ .Mainsite.Url }}</a>:
+{{ if eq .Mainsite.Code 200 }}
+Reachable
+{{ else -}}
+UNREACHABLE
+<p>Return code: {{ .Mainsite.Code }}
+<p>Error message: {{ .Mainsite.Error }}
+{{ end }}
+        <p/><a href="{{ .Community.Url }}">{{ .Community.Url }}</a>: 
+{{ if eq .Community.Code 200 -}}
+Reachable
+{{- else -}}
+UNREACHABLE
+<p>Return code: {{ .Community.Code }}
+<p>Error message: {{ .Community.Error }}
+{{ end -}}
+    </body>
+</html>
