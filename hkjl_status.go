@@ -90,7 +90,7 @@ func PollSite(url string, rc chan Response) (response Response) {
 	var res *http.Response
 	var err error
 	var t_start time.Time
-	var duration time.Duration
+	var timeout time.Duration
 
 	t_start = time.Now()
 
@@ -98,14 +98,14 @@ func PollSite(url string, rc chan Response) (response Response) {
 	response.Code = 666
 	response.Error = "Unknown error"
 
-	duration, err = time.ParseDuration(D_TIMEOUT)
+	timeout, err = time.ParseDuration(D_TIMEOUT)
 	if err != nil {
 		response.Error = err.Error()
 		rc <- response
 		return
 	}
 
-	client = &http.Client{Timeout: duration}
+	client = &http.Client{Timeout: timeout}
 
 	res, err = client.Get(url)
 	if err != nil {
@@ -116,7 +116,7 @@ func PollSite(url string, rc chan Response) (response Response) {
 
 	response.Url = url
 	response.Code = res.StatusCode
-	response.Time = time.Since(t_start).Seconds()
+	response.Time = time.Since(t_start).Seconds() * 1000
 
 	rc <- response
 
