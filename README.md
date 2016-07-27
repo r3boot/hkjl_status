@@ -6,11 +6,11 @@ page displaying the status.
 The procedure below works for Debian Jessie. If you have any other OS, you're
 on your own
 
-```bash
-sudo apt-get install git golang binutils
-git clone https://github.com/r3boot/hkjl_status
-cd hkjl_status
-sudo ./scripts/install.sh
+```
+$ sudo apt-get install git golang binutils
+$ git clone https://github.com/r3boot/hkjl_status
+$ cd hkjl_status
+$ sudo ./scripts/install.sh
 ```
 
 ## TODO
