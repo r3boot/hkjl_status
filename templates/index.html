@@ -41,7 +41,7 @@
           <span class="btn btn-lg btn-success" role="button"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;{{ .Community.Time | printf "%.02f" }}ms response time</span>
           {{ else }}
           <span class="btn btn-lg btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;UNREACHABLE</span>
-          <p/><small>{{ .Community.Error }}</small>
+          <h5><small>{{ .Community.Error }}</small></h5>
           {{ end }}
         </p>
       </div>
