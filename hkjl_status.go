@@ -157,6 +157,14 @@ func WriteStatusPage(templates string, output_dir string) (err error) {
 	}
 	data.Timestamp = time.Now().Format(time.RFC850)
 
+	if data.Mainsite.Code != 200 && data.Mainsite.Code != 666 {
+		data.Mainsite.Error = "Received tatus code " + strconv.Itoa(data.Mainsite.Code) + " during download of page"
+	}
+
+	if data.Community.Code != 200 && data.Community.Code != 666 {
+		data.Community.Error = "Received status code " + strconv.Itoa(data.Community.Code) + " during download of page"
+	}
+
 	Log.Debug("Loading template file data")
 	fname = templates + "/index.html"
 	if template_data, err = LoadTemplate(fname); err != nil {
