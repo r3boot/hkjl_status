@@ -10,6 +10,7 @@ on your own
 $ sudo apt-get install git golang binutils
 $ git clone https://github.com/r3boot/hkjl_status
 $ cd hkjl_status
+$ ./scripts/build.sh
 $ sudo ./scripts/install.sh
 ```
 
