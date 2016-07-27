@@ -15,17 +15,21 @@ import (
 const MAINSITE_URL string = "https://www.hackenkunjeleren.nl/"
 const COMMUNITY_URL string = "https://community.hackenkunjeleren.nl/"
 
+// Poll timeout
 const D_TIMEOUT string = "30s"
 
+// Default values for CLI arguments
 const D_DEBUG bool = false
 const D_TIMESTAMP bool = false
 const D_OUTPUT string = "/srv/www/hkjl_status/htdocs"
 const D_TEMPLATES string = "/usr/share/hkjl_status/templates"
 
+// Constants used to denote the global status
 const D_GREEN int = 0
 const D_ORANGE int = 1
 const D_RED int = 2
 
+// Datastructure used to capture details of a polled website
 type Response struct {
 	Url   string
 	Code  int
@@ -33,6 +37,7 @@ type Response struct {
 	Error string
 }
 
+// Datastructure used to write details into a template
 type TemplateData struct {
 	Status    int
 	Timestamp string
@@ -40,11 +45,13 @@ type TemplateData struct {
 	Community Response
 }
 
+// Command-line arguments supported by this application
 var debug = flag.Bool("D", D_DEBUG, "Enable debugging output")
 var timestamp = flag.Bool("T", D_TIMESTAMP, "Enable timestamps in output")
 var output_dir = flag.String("o", D_OUTPUT, "Directory in which to write output")
 var templates = flag.String("t", D_TEMPLATES, "Directory containing templates")
 
+// Logging framework
 var Log logger.Log
 
 /* LoadTemplate -- Loads the template 'name' and returns a byte array with
@@ -137,7 +144,7 @@ func WriteStatusPage(templates string, output_dir string) (err error) {
 	var ms_chan chan Response
 	var cs_chan chan Response
 
-	// Poll websites to retrieve status info
+	// Poll websites concurrently to retrieve status info
 	Log.Debug("Poll websites")
 	ms_chan = make(chan Response, 1)
 	cs_chan = make(chan Response, 1)
