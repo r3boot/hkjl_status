@@ -28,6 +28,8 @@ install -d -v -o ${USER} -g ${USER} -m 0755 assets/imgs ${OUTPUT_DIR}/imgs
 install -v -o ${USER} -g ${USER} -m 0644 assets/imgs/* ${OUTPUT_DIR}/imgs
 install -d -v -o ${USER} -g ${USER} -m 0755 assets/js ${OUTPUT_DIR}/js
 install -v -o ${USER} -g ${USER} -m 0644 assets/js/* ${OUTPUT_DIR}/js
+install -d -v -o ${USER} -g ${USER} -m 0755 assets/fonts ${OUTPUT_DIR}/fonts
+install -v -o ${USER} -g ${USER} -m 0644 assets/fonts/* ${OUTPUT_DIR}/fonts
 install -d -v -o root -g root ${TEMPLATE_DIR}
 install -v  -o root -g root templates/index.html ${TEMPLATE_DIR}/index.html
 

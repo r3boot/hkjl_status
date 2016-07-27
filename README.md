@@ -17,3 +17,4 @@ $ sudo ./scripts/install.sh
 ## TODO
 * Add graphs for latency
 * Add method to add outage log
+* Add explicit v4/v6 testing instead of relying on the default
