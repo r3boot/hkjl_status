@@ -20,3 +20,4 @@ $ sudo ./scripts/install.sh
 * Add method to add outage log
 * Add explicit v4/v6 testing instead of relying on the default
 * Move to JS refresh model instead of meta-refresh
+* Make buttons into nice spans

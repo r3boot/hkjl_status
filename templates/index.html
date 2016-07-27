@@ -22,29 +22,19 @@
         <h3 class="logo">Hackenkunjeleren service status</h3>
       </div>
 
+      {{ with .Responses }}{{ range . }}
       <div class="jumbotron">
         <p class="text-center">
-          <h2><a href="{{ .Mainsite.Url }}">{{ .Mainsite.Url }}</a></h2>
-          {{ if eq .Mainsite.Code 200 }}
-          <span class="btn btn-lg btn-success" role="button"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Reachable, {{ .Mainsite.Time | printf "%.02f" }}ms response time</span>
+          <h2><a href="{{ .Url }}">{{ .Url }}</a></h2>
+          {{ if eq .Code 200 }}
+          <span class="btn btn-lg btn-success" role="button"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Reachable, {{ .Time | printf "%.02f" }}ms response time</span>
           {{ else }}
           <span class="btn btn-lg btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;UNREACHABLE</span>
-          <h5><small>{{ .Mainsite.Error }}</small></h5>
+          <h5><small>{{ .Error }}</small></h5>
           {{ end }}
         </p>
       </div>
-
-      <div class="jumbotron">
-        <p class="text-center">
-          <h2><a href="{{ .Community.Url }}">{{ .Community.Url }}</a></h2>
-          {{ if eq .Community.Code 200 }}
-          <span class="btn btn-lg btn-success" role="button"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Reachable, {{ .Community.Time | printf "%.02f" }}ms response time</span>
-          {{ else }}
-          <span class="btn btn-lg btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;UNREACHABLE</span>
-          <h5><small>{{ .Community.Error }}</small></h5>
-          {{ end }}
-        </p>
-      </div>
+      {{ end }}{{ end }}
 
       <footer class="footer">
           <p>Last update: {{ .Timestamp }}
